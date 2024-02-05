@@ -1,6 +1,14 @@
+let moneyAmount = 1000;
 window.onload = () => {
-    const tab_switchers = document.querySelectorAll('[data-switcher]');
+    const moneyText = document.querySelector(".moneyBar");
 
+    moneyText.textContent = "$" + moneyAmount.toString();
+    moneyText.addEventListener("click", function() {
+        SubtractMoney(100);
+        //AddMoney(100);
+        moneyText.textContent = "$" + moneyAmount.toString();
+    });
+    const tab_switchers = document.querySelectorAll('[data-switcher]');
     for (let i =0; i<tab_switchers.length; i++) {
         const tab_switcher = tab_switchers[i];
         const page_id = tab_switcher.dataset.tab;
@@ -19,4 +27,10 @@ function SwitchPage(page_id) {
 
     const next_page = document.querySelector(`.pages .page[data-page="${page_id}"]`)
     next_page.classList.add('is-active');
+}
+function SubtractMoney(bet) {
+    moneyAmount -= bet;
+}
+function AddMoney(bet) {
+    moneyAmount += bet;
 }
