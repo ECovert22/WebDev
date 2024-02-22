@@ -23,7 +23,7 @@ moneyText.addEventListener("click", function() {
     moneyText.textContent = "$" + moneyAmount.toString();
 });
 
-let betText = document.querySelector(".nameBar");
+let betText = document.querySelector(".betBar");
 
 betText.textContent = "Bet: $" + betAmount.toString();
 betText.addEventListener("click", function() {
@@ -55,7 +55,129 @@ function SubtractMoney(bet) {
 function AddMoney(bet) {
     moneyAmount += bet;
 }
-// Code taken from GitHub ngl homie
+let startGameButton = document.getElementById("startGameButton");
+startGameButton.addEventListener("click", function() {
+    playGame();
+    console.log("pressed");
+});
+function getCardIcon(s,n) {
+    let suit = s;
+    let number = n;
+    // there might be a better way to do this but i don't think this is too bad
+    if (suit === 1) {
+        if (number === 1) {
+            return "&#127137;";
+        } else if (number === 2) {
+            return "&#127138;";
+        } else if (number === 3) {
+            return "&#127139;";
+        } else if (number === 4) {
+            return "&#127140;";
+        } else if (number === 5) {
+            return "&#127141;";
+        } else if (number === 6) {
+            return "&#127142;";
+        } else if (number === 7) {
+            return "&#127143;";
+        } else if (number === 8) {
+            return "&#127144;";
+        } else if (number === 9) {
+            return "&#127145;";
+        } else if (number === 10) {
+            return "&#127146;";
+        } else if (number === 11) {
+            return "&#1271347;";
+        } else if (number === 12) {
+            return "&#127149;";
+        } else if (number === 13) {
+            return "&#127150;";
+        }
+    } else if (suit === 2 ) {
+        if (number === 1) {
+            return "&#127153;";
+        } else if (number === 2) {
+            return "&#127154;";
+        } else if (number === 3) {
+            return "&#127155;";
+        } else if (number === 4) {
+            return "&#127156;";
+        } else if (number === 5) {
+            return "&#127157;";
+        } else if (number === 6) {
+            return "&#127158;";
+        } else if (number === 7) {
+            return "&#127159;";
+        } else if (number === 8) {
+            return "&#127160;";
+        } else if (number === 9) {
+            return "&#127161;";
+        } else if (number === 10) {
+            return "&#127162;";
+        } else if (number === 11) {
+            return "&#127163;";
+        } else if (number === 12) {
+            return "&#127165;";
+        } else if (number === 13) {
+            return "&#127166;";
+        }
+    } else if (suit === 3) {
+        if (number === 1) {
+            return "&#127169;";
+        } else if (number === 2) {
+            return "&#127170;";
+        } else if (number === 3) {
+            return "&#127171;";
+        } else if (number === 4) {
+            return "&#127172;";
+        } else if (number === 5) {
+            return "&#127173;";
+        } else if (number === 6) {
+            return "&#127174;";
+        } else if (number === 7) {
+            return "&#127175;";
+        } else if (number === 8) {
+            return "&#127176;";
+        } else if (number === 9) {
+            return "&#127177;";
+        } else if (number === 10) {
+            return "&#127178;";
+        } else if (number === 11) {
+            return "&#127179;";
+        } else if (number === 12) {
+            return "&#127181;";
+        } else if (number === 13) {
+            return "&#127182;";
+        }
+    } else if (suit === 4) {
+        if (number === 1) {
+            return "&#127185;";
+        } else if (number === 2) {
+            return "&#127186;";
+        } else if (number === 3) {
+            return "&#127187;";
+        } else if (number === 4) {
+            return "&#127188;";
+        } else if (number === 5) {
+            return "&#127189;";
+        } else if (number === 6) {
+            return "&#127190;";
+        } else if (number === 7) {
+            return "&#127191;";
+        } else if (number === 8) {
+            return "&#127192;";
+        } else if (number === 9) {
+            return "&#127193;";
+        } else if (number === 10) {
+            return "&#127194;";
+        } else if (number === 11) {
+            return "&#127195;";
+        } else if (number === 12) {
+            return "&#127197;";
+        } else if (number === 13) {
+            return "&#127198;";
+        }
+    }
+}
 function Card(s, n) {
     let suit = s;
     let number = n;
@@ -136,12 +258,12 @@ function Hand() {
             if (i < cards.length - 1)
                 myHand += ", ";
         }
-        /*
+
         for (var i = 0; i < cards.length; i++) {
             myHand += cards[i].getNumber() +" of suit " +cards[i].getSuit();
             if (i < cards.length - 1)
                 myHand += ", ";
-        }*/
+        }
         return myHand;
     };
     this.hitMe = function() {
@@ -186,7 +308,7 @@ var declareWinner = function(userHand, dealerHand) {
 
     }
 };
-/*
+
 var playGame = function() {
     var userHand = playAsUser();
     var dealerHand = playAsDealer();
@@ -203,4 +325,4 @@ var playGame = function() {
     console.log("\nYour hand:\n" +userHand.printHand());
     console.log("Dealer's hand:\n" +dealerHand.printHand());
 };
-*/
+
