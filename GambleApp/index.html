@@ -18,11 +18,13 @@
                 </div>
                 <div class="page" data-page="2">
                     <div class="BlackJack">
-                        <h1>Dealer Hand:</h1>
-                            <p class="dealer CardIcons">&#127137; &#127138;</p>
+                        <div class="visable">
+                            <h1>Dealer Hand:</h1>
+                                <p id="dealerHandText"></p>
 
-                        <h1>Player Hand:</h1>
-                        <p class="player CardIcons">&#127137; &#127138;</p>
+                            <h1>Player Hand:</h1>
+                                <p id="playerHandText"></p>
+                        </div>
                         <button id="startGameButton" class="btn">Start Game!</button>
                         <br>
                         <button id="hitButton" class="play btn">Hit!</button>
@@ -55,7 +57,7 @@
         </main>
         <nav class="tabs">
             <div class="tab leftSide is-active">
-                <a data-switcher data-tab="1">Mines</a>
+                <a data-switcher data-tab="1">Roulette</a>
             </div>
             <div class="tab leftSide">
                 <a data-switcher data-tab="2">Blackjack</a>

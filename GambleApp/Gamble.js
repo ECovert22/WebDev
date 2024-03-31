@@ -1,5 +1,6 @@
 let moneyAmount = 1000;
 let betAmount = 100;
+
 window.onload = () => {
     const tab_switchers = document.querySelectorAll('[data-switcher]');
     for (let i =0; i<tab_switchers.length; i++) {
@@ -56,14 +57,18 @@ function AddMoney(bet) {
     moneyAmount += bet;
 }
 let startGameButton = document.getElementById("startGameButton");
+let hitButton = document.getElementById("hitButton");
+let standButton = document.getElementById("standButton");
 startGameButton.addEventListener("click", function() {
+    startGameButton.classList.add('is-active');
+    hitButton.classList.add('is-active');
+    standButton.classList.add('is-active');
     playGame();
-    console.log("pressed");
 });
 function getCardIcon(s,n) {
     let suit = s;
     let number = n;
-    // there might be a better way to do this but i don't think this is too bad
+    // there might be a better way to do this, but I don't think this is too bad
     if (suit === 1) {
         if (number === 1) {
             return "&#127137;";
@@ -221,49 +226,15 @@ function Hand() {
     };
     this.printHand = function() {
         var myHand = "";
-        var numberArray = [];
-        var suitArray = [];
+        var cardIconArray = [];
         for (var i = 0; i < cards.length; i++) {
-            switch(cards[i].getNumber()) {
-                case 1:
-                    numberArray.push("ace");
-                    break;
-                case 11:
-                    numberArray.push("jack");
-                    break;
-                case 12:
-                    numberArray.push("queen");
-                    break;
-                case 13:
-                    numberArray.push("king");
-                    break;
-                default:
-                    numberArray.push(cards[i].getNumber());
+            cardIconArray.push(getCardIcon(cards[i].getSuit(), cards[i].getNumber()));
+            myHand += cardIconArray[i];
+            if (i < cards.length - 1) {
+                myHand += " ";
             }
-            switch(cards[i].getSuit()) {
-                case 1:
-                    suitArray.push("spades");
-                    break;
-                case 2:
-                    suitArray.push("hearts");
-                    break;
-                case 3:
-                    suitArray.push("diamonds");
-                    break;
-                case 4:
-                    suitArray.push("clubs");
-                    break;
-            }
-            myHand += numberArray[i] +" of " +suitArray[i];
-            if (i < cards.length - 1)
-                myHand += ", ";
         }
-
-        for (var i = 0; i < cards.length; i++) {
-            myHand += cards[i].getNumber() +" of suit " +cards[i].getSuit();
-            if (i < cards.length - 1)
-                myHand += ", ";
-        }
+        console.log(myHand);
         return myHand;
     };
     this.hitMe = function() {
@@ -271,22 +242,27 @@ function Hand() {
     };
 }
 
-var playAsDealer = function() {
-    var dealerHand = new Hand();
+var playAsDealer = function(dealerHand) {
     while (dealerHand.score() < 17) {
         dealerHand.hitMe();
     }
     return dealerHand;
 };
 
-var playAsUser = function() {
-    var userHand = new Hand();
-    var decision = confirm("Welcome to the Blackjack Palace.\nYour hand is: "+ userHand.printHand() + ". Hit?");
-    while(decision) {
-        userHand.hitMe();
-        decision = confirm("Your hand is: "+ userHand.printHand() +". Hit?");
-    }
-    return userHand;
+var playAsUser = function(userHand) {
+    return new Promise((resolve, reject) => {
+        hitButton.addEventListener("click", function () {
+            userHand.hitMe();
+            let userHandText = document.querySelector("#playerHandText");
+            userHandText.textContent = userHand.printHand();
+        });
+
+        standButton.addEventListener("click", function () {
+            resolve(userHand);
+            hitButton.classList.remove('is-active');
+            standButton.classList.remove('is-active');
+        });
+    });
 };
 
 var declareWinner = function(userHand, dealerHand) {
@@ -310,19 +286,30 @@ var declareWinner = function(userHand, dealerHand) {
 };
 
 var playGame = function() {
-    var userHand = playAsUser();
-    var dealerHand = playAsDealer();
-    console.log(declareWinner(userHand, dealerHand));
-    console.log("\nScores:");
-    if (userHand.score() > 21)
-        console.log("User: " +userHand.score() +" (went over)");
-    else
-        console.log("User: " +userHand.score());
-    if (dealerHand.score() > 21)
-        console.log("Dealer: " +dealerHand.score() +" (went over)");
-    else
-        console.log("Dealer: " +dealerHand.score());
-    console.log("\nYour hand:\n" +userHand.printHand());
-    console.log("Dealer's hand:\n" +dealerHand.printHand());
+    var initialDealerHand = new Hand();
+    let dealerHandText = document.querySelector("#dealerHandText");
+    var initialUserHand = new Hand();
+    let userHandText = document.querySelector("#playerHandText");
+    dealerHandText.textContent = initialDealerHand.printHand();
+    userHandText.textContent = initialUserHand.printHand();
+    var userHand = playAsUser(initialUserHand)
+        .then(userHand => {
+            console.log("test");
+            var dealerHand = playAsDealer(initialDealerHand);
+            dealerHandText.textContent = initialDealerHand.printHand();
+            var results = declareWinner(userHand, dealerHand);
+            console.log(results);
+            if (userHand.score() > 21)
+                console.log("User: " +userHand.score() +" (went over)");
+            else
+                console.log("User: " +userHand.score());
+            if (dealerHand.score() > 21)
+                console.log("Dealer: " +dealerHand.score() +" (went over)");
+            else
+                console.log("Dealer: " +dealerHand.score());
+            console.log("\nYour hand:\n" +userHand.printHand());
+            console.log("Dealer's hand:\n" +dealerHand.printHand());
+        });
+
 };
 
