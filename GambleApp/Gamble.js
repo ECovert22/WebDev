@@ -21,7 +21,6 @@ moneyText.textContent = "$" + moneyAmount.toString();
 moneyText.addEventListener("click", function() {
 
     AddMoney(betAmount);
-    moneyText.textContent = "$" + moneyAmount.toString();
 });
 
 let betText = document.querySelector(".betBar");
@@ -50,12 +49,74 @@ function SwitchPage(page_id) {
     const next_page = document.querySelector(`.pages .page[data-page="${page_id}"]`)
     next_page.classList.add('is-active');
 }
+let stats = document.getElementById("statsText");
+
 function SubtractMoney(bet) {
     moneyAmount -= bet;
+    moneyText.textContent = "$" + moneyAmount.toString();
+    let newSpan = document.createElement("span");
+    newSpan.textContent = "-" +bet+ " New balance is: " +moneyAmount+ ", ";
+    newSpan.classList.add("is-neg");
+    stats.appendChild(newSpan);
 }
 function AddMoney(bet) {
     moneyAmount += bet;
+    moneyText.textContent = "$" + moneyAmount.toString();
+    let newSpan = document.createElement("span");
+    newSpan.textContent = "+" +bet+ " New balance is: " +moneyAmount+ ", ";
+    newSpan.classList.add("is-pos");
+    stats.appendChild(newSpan);
 }
+
+let blackButton = document.getElementById("blackButton");
+let redButton = document.getElementById("redButton");
+let greenButton = document.getElementById("greenButton");
+let rollButton = document.getElementById("rollButton");
+
+let selectedColor = document.getElementById("selectedColor");
+let rollNumber = document.getElementById("rollNumber");
+
+let betColor = "black";
+blackButton.addEventListener("click", function() {
+    selectedColor.classList.remove("is-green", "is-red");
+    selectedColor.classList.add("is-black");
+    selectedColor.textContent = "Black!";
+    betColor = "black";
+});
+redButton.addEventListener("click", function() {
+    selectedColor.classList.remove("is-green", "is-black");
+    selectedColor.classList.add("is-red");
+    selectedColor.textContent = "Red!";
+    betColor = "red";
+});
+greenButton.addEventListener("click", function() {
+    selectedColor.classList.remove("is-black", "is-red");
+    selectedColor.classList.add('is-green');
+    selectedColor.textContent = "Green!";
+    betColor = "green";
+});
+rollButton.addEventListener("click", function() {
+         rollNumber.classList.remove("is-black", "is-red", "is-green");
+        let roll = Math.floor(Math.random()*37);
+        let color = "";
+        rollNumber.textContent = roll.toString();
+        if (roll===0) {
+            rollNumber.classList.add("is-green");
+            color = "green";
+        } else if (roll%2===0) {
+            rollNumber.classList.add("is-red");
+            color = "red";
+        } else {
+            rollNumber.classList.add("is-black");
+            color = "black";
+        }
+        if (color===betColor) {
+            AddMoney(betAmount);
+        } else {
+            SubtractMoney(betAmount);
+        }
+    });
+
 let startGameButton = document.getElementById("startGameButton");
 let hitButton = document.getElementById("hitButton");
 let standButton = document.getElementById("standButton");
@@ -202,32 +263,31 @@ function Card(s, n) {
     };
 }
 
-var deal = function() {
-    var suit = Math.floor(Math.random() * 4) + 1;
-    var number = Math.floor(Math.random() * 13) + 1;
-    var myCard = new Card(suit, number);
-    return myCard;
+let deal = function() {
+    let suit = Math.floor(Math.random() * 4) + 1;
+    let number = Math.floor(Math.random() * 13) + 1;
+    return new Card(suit, number);
 };
 
 function Hand() {
-    var cards = [deal(), deal()];
+    let cards = [deal(), deal()];
     this.getHand = function() {
         return cards;
     };
     this.score = function() {
-        var myScore = 0;
-        for (var i = 0; i < cards.length; i++)
+        let myScore = 0;
+        for (let i = 0; i < cards.length; i++)
             myScore += cards[i].getValue();
-        for (var a = 0; a < cards.length && myScore > 21; a++) {
+        for (let a = 0; a < cards.length && myScore > 21; a++) {
             if (cards[a].getValue() === 11)
                 myScore -= 10;
         }
         return myScore;
     };
     this.printHand = function() {
-        var myHand = "";
-        var cardIconArray = [];
-        for (var i = 0; i < cards.length; i++) {
+        let myHand = "";
+        let cardIconArray = [];
+        for (let i = 0; i < cards.length; i++) {
             cardIconArray.push(getCardIcon(cards[i].getSuit(), cards[i].getNumber()));
             myHand += cardIconArray[i];
             if (i < cards.length - 1) {
@@ -242,14 +302,14 @@ function Hand() {
     };
 }
 
-var playAsDealer = function(dealerHand) {
+let playAsDealer = function(dealerHand) {
     while (dealerHand.score() < 17) {
         dealerHand.hitMe();
     }
     return dealerHand;
 };
 
-var playAsUser = function(userHand) {
+let playAsUser = function(userHand) {
     return new Promise((resolve, reject) => {
         hitButton.addEventListener("click", function () {
             userHand.hitMe();
@@ -265,50 +325,59 @@ var playAsUser = function(userHand) {
     });
 };
 
-var declareWinner = function(userHand, dealerHand) {
+let declareWinner = function(userHand, dealerHand) {
     if (userHand.score() > 21) {
-        if (dealerHand.score() > 21)
+        if (dealerHand.score() > 21) {
             return "You tied!";
-        else
+        } else {
+            SubtractMoney(betAmount);
             return "You lose!";
+        }
     }
-    else if (dealerHand.score() > 21)
+    else if (dealerHand.score() > 21) {
+        AddMoney(betAmount);
         return "You win!";
-    else {
-        if (userHand.score() > dealerHand.score())
+    } else {
+        if (userHand.score() > dealerHand.score()) {
+            AddMoney(betAmount);
             return "You win!";
-        else if (userHand.score() === dealerHand.score())
+        } else if (userHand.score() === dealerHand.score()) {
             return "You tied!";
-        else if (userHand.score() < dealerHand.score())
+        } else if (userHand.score() < dealerHand.score()) {
+            SubtractMoney(betAmount);
             return "You lose!";
+        }
 
     }
 };
 
-var playGame = function() {
-    var initialDealerHand = new Hand();
+let playGame = function() {
+    let initialDealerHand = new Hand();
     let dealerHandText = document.querySelector("#dealerHandText");
-    var initialUserHand = new Hand();
+    let initialUserHand = new Hand();
     let userHandText = document.querySelector("#playerHandText");
     dealerHandText.textContent = initialDealerHand.printHand();
     userHandText.textContent = initialUserHand.printHand();
-    var userHand = playAsUser(initialUserHand)
+    let userHand = playAsUser(initialUserHand)
         .then(userHand => {
             console.log("test");
-            var dealerHand = playAsDealer(initialDealerHand);
+            let dealerHand = playAsDealer(initialDealerHand);
             dealerHandText.textContent = initialDealerHand.printHand();
-            var results = declareWinner(userHand, dealerHand);
+            let results = declareWinner(userHand, dealerHand);
             console.log(results);
-            if (userHand.score() > 21)
-                console.log("User: " +userHand.score() +" (went over)");
-            else
-                console.log("User: " +userHand.score());
-            if (dealerHand.score() > 21)
-                console.log("Dealer: " +dealerHand.score() +" (went over)");
-            else
-                console.log("Dealer: " +dealerHand.score());
+            if (userHand.score() > 21) {
+                console.log("User: " + userHand.score() + " (went over)");
+            } else {
+                console.log("User: " + userHand.score());
+            }
+            if (dealerHand.score() > 21) {
+                console.log("Dealer: " + dealerHand.score() + " (went over)");
+            } else {
+                console.log("Dealer: " + dealerHand.score());
+            }
             console.log("\nYour hand:\n" +userHand.printHand());
             console.log("Dealer's hand:\n" +dealerHand.printHand());
+            startGameButton.classList.remove('is-active');
         });
 
 };

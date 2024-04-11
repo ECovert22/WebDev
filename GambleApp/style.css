@@ -132,9 +132,6 @@ body {
     position: fixed;
     left:38%;
 }
-#startGameButton:hover,#standButton:hover,#hitButton:hover {
-    opacity: 1;
-}
 #hitButton {
     background-color: #04AA6D;
     color: white;
@@ -166,4 +163,92 @@ body {
 }
 #startGameButton.is-active {
     display: none;
+}
+
+#rollNumber {
+    font-size: 100px;
+    position: relative;
+    left: 42%;
+}
+#rollNumber.is-green {
+    color: green;
+}
+#rollNumber.is-red {
+    color: red;
+}
+#rollNumber.is-black {
+    color: black;
+}
+#selectedColor {
+    font-size: 60px;
+    position: relative;
+    left: 42%;
+    margin-top: 100px;
+}
+#selectedColor.is-red {
+    color:red;
+}
+#selectedColor.is-black {
+    color:black;
+}
+#selectedColor.is-green {
+    color:green;
+}
+#redButton {
+    background-color: red;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+    margin-bottom:10px;
+    opacity: 0.8;
+    position: relative;
+    left:10%;
+}
+#blackButton {
+    background-color: black;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+    margin-bottom:10px;
+    opacity: 0.8;
+    position: relative;
+    left: 5%;
+}
+#greenButton {
+    background-color: green;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+    margin-bottom:10px;
+    opacity: 0.8;
+    position: relative;
+    left:15%;
+}
+#rollButton {
+    background-color: blueviolet;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+    margin-top:100px;
+    margin-bottom:10px;
+    opacity: 0.8;
+    position: relative;
+    left:35%;
+}
+#startGameButton:hover,#standButton:hover,#hitButton:hover,#redButton:hover,#blackButton:hover,#greenButton:hover {
+    opacity: 1;
+}
+.is-pos {
+    color: green;
+}
+.is-neg {
+    color: red;
 }
