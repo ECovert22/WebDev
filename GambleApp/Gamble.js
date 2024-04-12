@@ -132,115 +132,115 @@ function getCardIcon(s,n) {
     // there might be a better way to do this, but I don't think this is too bad
     if (suit === 1) {
         if (number === 1) {
-            return "&#127137;";
+            return '🂡';
         } else if (number === 2) {
-            return "&#127138;";
+            return "🂢";
         } else if (number === 3) {
-            return "&#127139;";
+            return "🂣";
         } else if (number === 4) {
-            return "&#127140;";
+            return "🂤";
         } else if (number === 5) {
-            return "&#127141;";
+            return "🂥";
         } else if (number === 6) {
-            return "&#127142;";
+            return "🂦";
         } else if (number === 7) {
-            return "&#127143;";
+            return "🂧";
         } else if (number === 8) {
-            return "&#127144;";
+            return "🂨";
         } else if (number === 9) {
-            return "&#127145;";
+            return "🂩";
         } else if (number === 10) {
-            return "&#127146;";
+            return "🂪";
         } else if (number === 11) {
-            return "&#1271347;";
+            return "🂫";
         } else if (number === 12) {
-            return "&#127149;";
+            return "🂭";
         } else if (number === 13) {
-            return "&#127150;";
+            return "🂮";
         }
     } else if (suit === 2 ) {
         if (number === 1) {
-            return "&#127153;";
+            return "🂱";
         } else if (number === 2) {
-            return "&#127154;";
+            return "🂲";
         } else if (number === 3) {
-            return "&#127155;";
+            return "🂳";
         } else if (number === 4) {
-            return "&#127156;";
+            return "🂴";
         } else if (number === 5) {
-            return "&#127157;";
+            return "🂵";
         } else if (number === 6) {
-            return "&#127158;";
+            return "🂶";
         } else if (number === 7) {
-            return "&#127159;";
+            return "🂷";
         } else if (number === 8) {
-            return "&#127160;";
+            return "🂸";
         } else if (number === 9) {
-            return "&#127161;";
+            return "🂹";
         } else if (number === 10) {
-            return "&#127162;";
+            return "🂺";
         } else if (number === 11) {
-            return "&#127163;";
+            return "🂻";
         } else if (number === 12) {
-            return "&#127165;";
+            return "🂺";
         } else if (number === 13) {
-            return "&#127166;";
+            return "🂾";
         }
     } else if (suit === 3) {
         if (number === 1) {
-            return "&#127169;";
+            return "🃁";
         } else if (number === 2) {
-            return "&#127170;";
+            return "🃂";
         } else if (number === 3) {
-            return "&#127171;";
+            return "🃃";
         } else if (number === 4) {
-            return "&#127172;";
+            return "🃄";
         } else if (number === 5) {
-            return "&#127173;";
+            return "🃅";
         } else if (number === 6) {
-            return "&#127174;";
+            return "🃆";
         } else if (number === 7) {
-            return "&#127175;";
+            return "🃇";
         } else if (number === 8) {
-            return "&#127176;";
+            return "🃈";
         } else if (number === 9) {
-            return "&#127177;";
+            return "🃉";
         } else if (number === 10) {
-            return "&#127178;";
+            return "🃊";
         } else if (number === 11) {
-            return "&#127179;";
+            return "🃋";
         } else if (number === 12) {
-            return "&#127181;";
+            return "🃍";
         } else if (number === 13) {
-            return "&#127182;";
+            return "🃎";
         }
     } else if (suit === 4) {
         if (number === 1) {
-            return "&#127185;";
+            return "🃑";
         } else if (number === 2) {
-            return "&#127186;";
+            return "🃒";
         } else if (number === 3) {
-            return "&#127187;";
+            return "🃓";
         } else if (number === 4) {
-            return "&#127188;";
+            return "🃔";
         } else if (number === 5) {
-            return "&#127189;";
+            return "🃕";
         } else if (number === 6) {
-            return "&#127190;";
+            return "🃖";
         } else if (number === 7) {
-            return "&#127191;";
+            return "🃗";
         } else if (number === 8) {
-            return "&#127192;";
+            return "🃘";
         } else if (number === 9) {
-            return "&#127193;";
+            return "🃙";
         } else if (number === 10) {
-            return "&#127194;";
+            return "🃚";
         } else if (number === 11) {
-            return "&#127195;";
+            return "🃛";
         } else if (number === 12) {
-            return "&#127197;";
+            return "🃝";
         } else if (number === 13) {
-            return "&#127198;";
+            return "🃞";
         }
     }
 }
