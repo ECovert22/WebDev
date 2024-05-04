@@ -1,0 +1,222 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightgray;
+    color:white;
+}
+
+.topInfo {
+    overflow: hidden;
+    background-color: darkgreen;
+}
+.AccountNameBar {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.SignInBar {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.tabs {
+    overflow: hidden;
+    background-color: darkgreen;
+    position:fixed;
+    bottom:0;
+
+}
+.tabs.isLocked, .pages.isLocked {
+    display: none;
+}
+.tabs .tab a {
+    float:left;
+    color: #f2f2f2;
+    text-align: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    text-decoration: none;
+    font-size: 17px;
+    width:90px;
+}
+.leftSide {
+    float:left;
+}
+.rightSide {
+    float:right;
+}
+.tabs .tab a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.tabs .tab.is-active a {
+    background-color: darkgray;
+    color: white;
+}
+
+.pages .page {
+    display:none;
+}
+.pages .page.is-active {
+    display: block;
+}
+
+
+.form-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+}
+
+
+.form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+}
+
+
+.form-container input[type=text], .form-container input[type=password] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.form-container .btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+}
+
+.form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+}
+#billForm {
+    background-color: lightpink;
+    color: black;
+}
+#NoButton {
+    background-color: red;
+}
+#billAccountBox {
+    color: white;
+    background-color: blue;
+    width: 90%;
+    font-size: 30px;
+    margin: 10px;
+}
+#transferForm label {
+    font-size: 50px;
+    color: black;
+}
+#transferForm select {
+    font-size: 30px;
+    color: black;
+    background-color: lightgreen;
+    width: 50%;
+}
+.currencyInput {
+    color: black;
+    background-color:lightgreen;
+    font-size: 30px;
+    border: 1px inset #ccc;
+}
+.currencyInput input {
+    color: black;
+    background-color:lightgreen;
+    font-size: 30px;
+    border: 1px inset #ccc;
+}
+#transferButton {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    margin-top:50px;
+    opacity: 0.8;
+    display: block;
+    position:relative;
+    left: 30%;
+}
+#SignInButton {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+    left:18%;
+    display: block;
+}
+#SignInButton.isSignedIn {
+    display: none;
+}
+.accountBox {
+    background-color: darkgray;
+    width: 60%;
+    position: relative;
+    left: 10%;
+    padding: 20px;
+    margin: 30px;
+    border:3px solid #3A3B3C;
+    border-left-width: 7px;
+}
+.checkingBox {
+    border-left-color: darkgreen;
+
+}
+.savingsBox {
+    border-left-color: lightgreen;
+}
+.billBox {
+    background-color: lightpink;
+    width: 60%;
+    position: relative;
+    left: 10%;
+    padding: 10px;
+    margin: 30px;
+    border:3px solid #3A3B3C;
+    border-left-width: 7px;
+}
+.billBox button {
+    background-color: red;
+    color: white;
+    padding: 16px;
+    position: absolute;
+    right:5%;
+    bottom:20%;
+    border: none;
+    cursor: pointer;
+
+}
+.is-pos {
+    color: green;
+}
+.is-neg {
+    color: red;
+}
