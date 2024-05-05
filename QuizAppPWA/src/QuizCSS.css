@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightgray;
+    color:white;
+}
+
+.topInfo {
+    overflow: hidden;
+    background-color: purple;
+}
+.sectionScoreBar {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.totalScoreBar {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.tabs {
+    overflow: hidden;
+    background-color: mediumpurple;
+    position:fixed;
+    bottom:0;
+
+}
+
+.tabs .tab a {
+    float:left;
+    color: #f2f2f2;
+    text-align: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    text-decoration: none;
+    font-size: 17px;
+    width:90px;
+}
+.leftSide {
+    float:left;
+}
+.rightSide {
+    float:right;
+}
+.tabs .tab a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.tabs .tab.is-active a {
+    background-color: darkgray;
+    color: white;
+}
+
+#startButton {
+    background-color: rebeccapurple;
+    color: white;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    margin-top:50px;
+    opacity: 0.8;
+    display: block;
+    position:absolute;
+    left: 35%;
+    top: 30%;
+}
+
+
+.answerButton {
+    left: 20%;
+    color: #f2f2f2;
+    background-color: mediumpurple;
+    text-align: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin-top:30px;
+    text-decoration: none;
+    font-size: 17px;
+    width:30%;
+    position:relative;
+}
+.answerButton.isSelected {
+    background-color: darkgray;
+    color: white;
+}
+#submitButton, #nextButton {
+    color: #f2f2f2;
+    background-color: rebeccapurple;
+    text-align: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin-top:100px;
+    text-decoration: none;
+    font-size: 17px;
+    width:30%;
+    position:relative;
+    left: 35%;
+}
+
+#feedBack {
+    color:black;
+    font-size: 30px;
+    text-align: center;
+}
+
+#question {
+    color:black;
+    font-size: 30px;
+    text-align: center;
+}
+
+
+.isLocked, #startButton.isLocked, #nextButton.isLocked, #submitButton.isLocked {
+    display: none;
+}
